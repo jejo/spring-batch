@@ -15,18 +15,6 @@
  */
 package org.springframework.batch.item.database.support;
 
-import static org.springframework.batch.support.DatabaseType.DB2;
-import static org.springframework.batch.support.DatabaseType.DB2ZOS;
-import static org.springframework.batch.support.DatabaseType.DERBY;
-import static org.springframework.batch.support.DatabaseType.H2;
-import static org.springframework.batch.support.DatabaseType.HSQL;
-import static org.springframework.batch.support.DatabaseType.MYSQL;
-import static org.springframework.batch.support.DatabaseType.ORACLE;
-import static org.springframework.batch.support.DatabaseType.POSTGRES;
-import static org.springframework.batch.support.DatabaseType.SQLITE;
-import static org.springframework.batch.support.DatabaseType.SQLSERVER;
-import static org.springframework.batch.support.DatabaseType.SYBASE;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,6 +32,8 @@ import org.springframework.jdbc.support.incrementer.OracleSequenceMaxValueIncrem
 import org.springframework.jdbc.support.incrementer.PostgreSQLSequenceMaxValueIncrementer;
 import org.springframework.jdbc.support.incrementer.SqlServerMaxValueIncrementer;
 import org.springframework.jdbc.support.incrementer.SybaseMaxValueIncrementer;
+
+import static org.springframework.batch.support.DatabaseType.*;
 
 /**
  * Default implementation of the {@link DataFieldMaxValueIncrementerFactory}
@@ -100,6 +90,9 @@ public class DefaultDataFieldMaxValueIncrementerFactory implements DataFieldMaxV
 			return new OracleSequenceMaxValueIncrementer(dataSource, incrementerName);
 		}
 		else if (databaseType == POSTGRES) {
+			return new PostgreSQLSequenceMaxValueIncrementer(dataSource, incrementerName);
+		}
+		else if (databaseType == EDB) {
 			return new PostgreSQLSequenceMaxValueIncrementer(dataSource, incrementerName);
 		}
 		else if (databaseType == SQLITE) {

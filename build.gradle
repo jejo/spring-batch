@@ -613,7 +613,7 @@ reference {
 	sourceDir = file('src/site/docbook/reference')
 }
 
-apply plugin: 'sonar-runner'
+/*apply plugin: 'sonar-runner'
 
 sonarRunner {
 	sonarProperties {
@@ -625,7 +625,7 @@ sonarRunner {
 		property "sonar.links.scm_dev", linkScmDevConnection
 		property "sonar.java.coveragePlugin", "jacoco"
 	}
-}
+}*/
 
 task api(type: Javadoc) {
 	group = 'Documentation'
